@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coolaboratory: Makers of Fine Experience</title>
+<meta name="description" content="Coolaboratory is Andrew Milmoe's independent practice: user experience design, physical AI, frontier AI model training, and support for the maker community.">
+<link rel="icon" href="images/coolaboratory-logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <img class="logo" src="images/coolaboratory-logo.png" alt="Coolaboratory: Makers of Fine Experience" width="299" height="82">
+    <h1 class="visually-hidden">Coolaboratory: Makers of Fine Experience</h1>
+  </div>
+</header>
+
+<div class="page-grid">
+
+  <p class="identity">Coolaboratory is Andrew G. Milmoe&rsquo;s independent practice: user experience design, physical AI, frontier AI model training, and support for the maker community.</p>
+
+  <section class="col2" aria-labelledby="col2-heading">
+    <h2 id="col2-heading">UX design for complex ecosystems, from the field to the boardroom</h2>
+    <p>Coolaboratory started in the Oakland Bay Area: information architecture and user experience design for global brands, by way of local digital agencies.</p>
+    <p>That same discipline carried it to Chicago: user experience design and physical AI for hardware startups. Industrial IoT for high-stakes physical environments, built for the people running the machines as much as the ones reading the numbers in the boardroom: heavy operational data made into something a frontline worker can actually use.</p>
+  </section>
+
+  <section class="col3" aria-labelledby="col3-heading">
+    <h2 id="col3-heading">Make:SF</h2>
+    <p>A Bay Area maker community, founded by Andrew in November 2007. Over the next decade it grew to 3,000 active members and produced more than 200 workshops, all of it hands-on: at the workbench, at Maker Faire, teaching and building alongside people who cared more about figuring it out than showing off. He moved on in May 2018.</p>
+
+    <div class="photo-rail">
+      <figure class="photo-item">
+        <img src="images/make-sf-booth.jpg" alt="Make:SF / TheBayMakers booth at a Bay Area maker faire, with adults and children soldering and building at a shared table." width="660" height="440" loading="lazy">
+        <figcaption class="caption">Make:SF booth, Maker Faire Bay Area</figcaption>
+      </figure>
+      <figure class="photo-item">
+        <img src="images/sensor-glove.jpg" alt="Closeup of a wired sensor glove prototype during a wearable-tech demo, with a small group gathered around open laptops." width="660" height="440" loading="lazy">
+        <figcaption class="caption">Members collaborate on sensor glove</figcaption>
+      </figure>
+      <figure class="photo-item">
+        <img src="images/whiteboard-demo.jpg" alt="A presenter at a whiteboard walks a seated and standing group through an electronics build laid out on a workshop table." width="660" height="440" loading="lazy">
+        <figcaption class="caption">Member demo at TechShop</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <aside class="col1-rail" aria-label="Contact and status">
+    <div class="col1-sticky">
+      <p class="mono-line">Email for availability</p>
+      <p class="mono-line"><a href="#" class="email-link js-only"></a><noscript><a href="mailto:andrew@coolaboratory.com">andrew@coolaboratory.com</a></noscript></p>
+      <p class="mono-line">For full-time roles, visit <a href="https://milmoe.com">Milmoe.com</a></p>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+(function () {
+  // "andrew@coolaboratory.com" as character codes, kept out of the HTML
+  // source as a plaintext string to deter naive scraping. Not cryptographic,
+  // same lightweight-deterrent tradeoff milmoe.com uses (src/lib/email.ts).
+  var DISPLAY_CODES = [97,110,100,114,101,119,64,99,111,111,108,97,98,111,114,97,116,111,114,121,46,99,111,109];
+
+  function decode(codes) {
+    return codes.map(function (c) { return String.fromCharCode(c); }).join('');
+  }
+
+  var email = decode(DISPLAY_CODES);
+  var links = document.querySelectorAll('.email-link');
+
+  for (var i = 0; i < links.length; i++) {
+    links[i].textContent = email;
+    links[i].href = 'mailto:' + email;
+    links[i].classList.remove('js-only');
+  }
+})();
+</script>
+
+</body>
+</html>

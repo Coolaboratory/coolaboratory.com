@@ -1,0 +1,451 @@
+/* Coolaboratory.com
+   Bitter (headings/narrative body) + JetBrains Mono (Column 1 rail + photo captions)
+   Palette pixel-sampled from the 2009 logo. See docs/designpowers/grant-visual-direction.md
+   Fraunces is permanently ruled out project-wide, do not reintroduce it.
+
+   Three-column structure (round two of the layout): persistent Column 1 rail,
+   Column 2 (work narrative), Column 3 (Make:SF + photos). Full rebuild, not a
+   patch on the prior six-section single-column version. */
+
+:root {
+  --bg-header: #FFFFFF;   /* masthead band only, exact logo-background match, never themed */
+  --bg: #F6F1E7;
+  --bg-column1: #F6F6F9;  /* Column 1's background at every breakpoint — pixel-sampled from the
+                              logo's own "Coo" letters (avg #585A82, hue 237°), then lightened
+                              and desaturated down to a pale tint (hue 238°, sat ~18%, L ~97%).
+                              Colder and slightly more saturated than --bg's warm cream on
+                              purpose — a quiet nod to the indigo end of the logo's gradient.
+                              Replaces the vertical rule. */
+  --ink: #241A30;
+  --accent: #BF6B69;        /* milmoe.com's exact accent, unmodified — Column 2/3 headings (large text, 3:1 threshold) */
+  --accent-link: #9C4E4C;   /* darkened from --accent for AA at body-text size (5.2:1 on --bg) — link default */
+  --accent-link-hover: #844240; /* darkened further — link hover/active/focus */
+  --green: #1F3A1E;       /* reserved, sampled from the logo tagline, currently unused on this page */
+  --hairline: rgba(36, 26, 48, 0.12);
+
+  --container-max: 1160px;
+  --gutter: 24px;
+
+  --font-serif: 'Bitter', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17111F;
+    --bg-column1: #161727; /* same "closer to the logo ink, lighter and more blue" logic from
+                               an already-cool dark base: hue 239°, sat ~27%, L ~12% — kept in
+                               the same hue family as the light-mode tint's 238° */
+    --ink: #F1E9D8;
+    /* Single unmodified accent covers both headings and links in dark mode —
+       4.9:1 on --bg-dark clears even the stricter 4.5:1 body-text threshold,
+       so no separate darkened link variant is needed the way light mode
+       requires one. Hover state differentiated by underline-offset only
+       (see the a:hover rule below), not a second color — no darker/lighter
+       variant was specified for dark mode and BF6B69 already reads clearly
+       against this background. */
+    --accent: #BF6B69;
+    --accent-link: #BF6B69;
+    --accent-link-hover: #BF6B69;
+    --green: #6FA96C;
+    --hairline: rgba(241, 233, 216, 0.12);
+    /* --bg-header intentionally not overridden: the logo PNG is flat white with
+       no alpha channel, so the masthead band stays white in every color scheme. */
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-size: 18px;
+  line-height: 1.98; /* 1.65 + 20%, per Andrew's request. Body copy only — inherited by
+                         .identity, .col2 p, .col3 p. .mono-line declares its own
+                         line-height separately (1.6) and is intentionally untouched. */
+}
+
+img {
+  max-width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.js-only {
+  display: none;
+}
+
+/* Masthead: full-bleed white band, exact logo-background match, closed with a
+   hairline rule. Logo left-aligns to Column 1's edge, not centered, so it
+   shares the same container/gutter math as .page-grid below.
+
+   Sticky and opaque: pinned to the top of the viewport at all times, with its
+   solid --bg-header background doing real masking work as Columns 2/3 scroll
+   up underneath it across the full page width. z-index 20, the top of the
+   page's stacking order — above Column 1 (10) and everything else (default). */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.masthead-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 57px var(--gutter); /* 57 + 57 + ~66px logo height = 180px total masthead height,
+                                   load-bearing: Column 1's sticky `top` below is derived from
+                                   this value (180px masthead + 96px content-rhythm margin =
+                                   276px) — see .col1-sticky's comment for the full chain. */
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+}
+
+/* Three-column body grid */
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 332px;
+  grid-template-rows: auto auto; /* required for .col1-rail's `grid-row: 1 / -1` below to
+                                     resolve correctly: negative line numbers count from the
+                                     end of the EXPLICIT grid, and with no explicit rows
+                                     declared, -1 collapsed back to line 1 instead of reaching
+                                     past row 2, leaving .col1-rail sized to the identity band
+                                     alone with no room for its sticky child to stick */
+  gap: 64px 48px; /* row-gap column-gap */
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 0; /* bottom padding moved to .col2/.col3's own padding-bottom
+    below — .page-grid's padding sits outside the grid's row-track sizing, so it was never
+    included in what .col1-rail (grid-row: 1/-1, stretched to match the row tracks) extends
+    to cover. Moving it into the row-2 content itself makes it part of row 2's natural
+    height, so the tint's stretch now includes it too — closes the ~64px gap that used to
+    show below the tint. */
+}
+
+/* No top padding on the grid itself: Column 1's box (below) needs to sit
+   flush against the masthead's bottom edge so its --bg-column1 tint starts
+   immediately where the header ends, with no cream-colored gap between them
+   (same flush-junction logic that used to apply to the vertical rule this
+   tint replaced). The 96px breathing room above the narrative content is
+   applied as margin-top on .identity instead, which only affects that
+   item's own box, not where the row line (and therefore Column 1's tinted
+   background) actually starts. */
+
+/* Identity band: spans Columns 2+3, sits in row 1. Grid area is wide, text
+   measure isn't, capped and left-aligned within the band. */
+
+.identity {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  max-width: 680px;
+  margin: 96px 0 0;
+}
+
+/* Column 2 and Column 3: row 2, side by side, headings align horizontally */
+
+.col2 {
+  grid-column: 2;
+  grid-row: 2;
+  padding-bottom: 64px; /* replaces the bottom slice of .page-grid's old padding — see the
+    comment on .page-grid above. Applied to both .col2 and .col3 (whichever ends up taller
+    determines row 2's actual height either way, and applying to both is correct regardless
+    of which one that is). */
+}
+
+.col3 {
+  grid-column: 3;
+  grid-row: 2;
+  padding-bottom: 64px; /* see .col2 */
+}
+
+.col2 h2,
+.col3 h2 {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 400; /* was 700 — Andrew wants the headline lighter, size/line-height
+                        unchanged (still 30px desktop / 22px mobile below) */
+  line-height: 1.2;
+  color: var(--accent);
+  text-wrap: balance;
+  margin: 0 0 16px;
+}
+
+.col2 p,
+.col3 p {
+  margin: 0 0 24px;
+}
+
+.col2 p:last-of-type,
+.col3 p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Column 3 photo rail: stacked, not gridded, sits below the paragraph.
+   Unchanged from the prior round: same files, crops, captions, alt text. */
+
+.photo-rail {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.photo-item {
+  margin: 0;
+}
+
+.photo-item img {
+  display: block;
+  width: 100%;
+  height: auto; /* do not drop this: without it the HTML width/height
+                   attributes resolve as a definite height and silently
+                   override aspect-ratio below, producing a portrait crop
+                   instead of landscape. Fixed once already, keep it fixed. */
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink);
+  opacity: 0.7;
+  margin: 8px 0 0;
+}
+
+/* Column 1: persistent rail. Outer grid item spans the full height of the
+   body grid; the sticky positioning lives on an inner wrapper, not on the
+   grid item itself, or it has no tall containing box to stick within.
+   z-index 10: below the sticky header (20), above Columns 2/3 (default) —
+   mostly a defensive default, since Column 1 and Columns 2/3 sit at
+   different x-positions and never actually compete for the same pixels.
+
+   Separated from Columns 2/3 by a background tint, not a line: the vertical
+   hairline rule used in prior rounds is retired, replaced by --bg-column1
+   filling the whole box at every breakpoint. A tint reads as "this whole
+   area is a different zone" rather than "here's a boundary" — a better fit
+   for an ambient utility rail than a bordered panel.
+
+   Desktop only, the tint bleeds past Column 1's own 240px grid track via a
+   ::before layer sized independently of the box — the color reaches further
+   than the content does, without changing the grid's own math (Column 2's
+   width, the sticky offset, etc. all still assume a 240px Column 1). The
+   pseudo-element is invisible to the accessibility tree by construction, no
+   aria-hidden needed. position: relative on .col1-rail anchors it; it's
+   already the tall, non-sticky outer box, so this doesn't interact with the
+   inner sticky wrapper's own positioning. */
+
+.col1-rail {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  z-index: 10;
+  position: relative;
+}
+
+.col1-rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * max(0px, (100vw - 1160px) / 2) - var(--gutter)); /* distance from the
+    viewport edge to the 1160px container's edge once the viewport exceeds it; max(0px, ...)
+    clamps to 0 below that, where the container already touches the viewport edge and
+    there's nothing left to bleed past — one formula handles both cases without a separate
+    media query. The extra `- var(--gutter)` accounts for .page-grid's own 24px left padding,
+    which sits between the container edge and the true viewport edge and was previously left
+    uncovered, showing as a thin strip of --bg between the tint and the window edge. */
+  right: -24px; /* extends past Column 1's right edge to roughly the midpoint of the 48px gap
+                    toward Column 2 — relative to .col1-rail's own box, no viewport math needed */
+  background: var(--bg-column1);
+  z-index: 0;
+}
+
+.col1-sticky {
+  position: sticky;
+  z-index: 1; /* sits above .col1-rail::before's tint layer (z-index: 0) — both are children
+                 within .col1-rail's own stacking context, so this is purely local, it doesn't
+                 touch the page-level header(20)/Column-1(10) stacking order at all */
+  top: 276px; /* 180px masthead height (.masthead-inner) + 96px content-rhythm
+                 margin (margin-top below) = 276px. Three numbers now coupled,
+                 not two — if either the masthead height or the margin below
+                 changes, this must be recomputed as their sum, or the fix
+                 this comment describes silently breaks.
+
+                 Why 276, not 180: the sticky `top` is the lock threshold —
+                 the viewport-relative distance at which the element stops
+                 scrolling with the page. At scroll position 0, .col1-sticky's
+                 content (thanks to its own 96px margin-top just below) is
+                 already rendering 276px from the top of its containing box,
+                 which itself sits flush under the masthead — i.e. it's
+                 already sitting exactly at its lock point before any
+                 scrolling happens. Setting `top` to that same 276px means
+                 there's no gap left to close, so it locks immediately at
+                 1px of scroll instead of visibly translating upward to
+                 close a 96px gap (the bug the previous round's `top: 180px`
+                 / `margin-top: 0` combination produced elsewhere: fixing the
+                 travel by zeroing the margin also knocked Column 1 out of
+                 alignment with .identity's text, which kept its own 96px
+                 margin-top). Locking the threshold to the content's natural
+                 resting position, instead of removing the margin that
+                 caused the gap, keeps both the alignment and the zero-travel
+                 behavior at once. */
+  margin-top: 96px; /* Restored to match .identity's own top rhythm — see the
+                        `top` comment above for why this and the masthead
+                        height together determine the sticky lock point, and
+                        why restoring this (rather than the previous round's
+                        margin-top: 0) is what keeps Column 1 visually
+                        aligned with .identity while still eliminating
+                        catch-up scroll travel. */
+  text-align: right; /* Kept on its own merits after the vertical rule it was
+                         originally justified against was retired: short
+                         marginalia text facing INTO the main columns rather
+                         than out toward the page's outer edge is a real
+                         print convention (captions/margin notes set flush to
+                         the inner margin). Reads as Column 1 addressing
+                         Columns 2/3. Desktop only — reverted to left on
+                         mobile below. */
+}
+
+.col1-sticky .mono-line {
+  margin: 0; /* status-to-email gap: no added margin at all, so the two lines read as
+                tightly connected — spacing comes purely from line-height, the same way
+                a soft-wrapped line breaks within a single paragraph (compare the CTA's
+                own "Milmoe.com" wrap, which has no margin between it and the line above) */
+}
+
+.col1-sticky .mono-line:nth-child(2) {
+  margin-bottom: 32px; /* email-to-CTA gap: a deliberate, larger editorial pause, not a
+                           rhythm inconsistency — "how to reach me" (status + email) vs.
+                           "or go here instead" (the milmoe.com CTA). Reuses the same 32px
+                           token as Column 3's prose-to-photos gap rather than inventing a
+                           new number. */
+}
+
+/* Mono meta lines: the whole Column 1 rail, plus photo captions above */
+
+.mono-line {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Links */
+
+a {
+  color: var(--accent-link);
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  color: var(--accent-link-hover);
+  text-underline-offset: 3px;
+}
+
+a:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Mobile: single column, 960px breakpoint. DOM order becomes visual order:
+   identity, Column 2, Column 3, Column 1's rail last, functioning as a
+   footer. Column 1 stops being sticky (nothing tall to stick alongside); its
+   --bg-column1 tint (set at every breakpoint, see .col1-rail above) becomes
+   a full-bleed footer band. */
+
+@media (max-width: 960px) {
+  .page-grid {
+    display: block;
+    padding: 56px var(--gutter) 56px;
+  }
+
+  .identity,
+  .col2,
+  .col3 {
+    max-width: 680px;
+    margin: 0 0 56px;
+  }
+
+  .identity {
+    margin-top: 0; /* desktop's 96px top margin is replaced by page-grid's
+                       own top padding at this breakpoint, see above */
+  }
+
+  .col2 h2,
+  .col3 h2 {
+    font-size: 22px;
+  }
+
+  .col1-rail {
+    /* Plain background here instead of the desktop ::before bleed layer —
+       the calc() breakout technique is specific to escaping the centered
+       1160px container, which doesn't exist once .page-grid is display:block.
+       This block is already a normal full-width element at this breakpoint,
+       so the negative-margin trick below is all it takes to bleed
+       edge-to-edge; same --bg-column1 token, same color, at every breakpoint. */
+    background: var(--bg-column1);
+    margin: 0 calc(var(--gutter) * -1) 0;
+    padding: 0 var(--gutter);
+  }
+
+  .col1-rail::before {
+    content: none; /* desktop-only bleed technique, not needed on mobile */
+  }
+
+  .col1-sticky {
+    position: static;
+    top: auto;
+    margin-top: 0;
+    padding: 40px 0;
+    max-width: 680px;
+    text-align: left; /* right-aligning a block sitting alone in a full-width
+                          footer band, with nothing to justify against, would
+                          read as arbitrary and fight the rest of the page's
+                          left-aligned reading flow — never about the rule
+                          specifically, still holds now that a tint replaced
+                          it. */
+  }
+
+  .masthead-inner {
+    padding: 32px var(--gutter); /* 32 + 32 + ~66px logo = 130px total mobile masthead height */
+  }
+
+  body {
+    font-size: 17px;
+    line-height: 1.92; /* 1.6 + 20%, matches the desktop body rule's same proportional bump */
+  }
+
+  .mono-line {
+    font-size: 14px;
+  }
+}
