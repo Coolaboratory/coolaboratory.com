@@ -55,8 +55,8 @@
   <aside class="col1-rail" aria-label="Contact and status">
     <div class="col1-sticky">
       <p class="mono-line">Email for availability</p>
-      <p class="mono-line"><a href="#" class="email-link js-only"></a><noscript><a href="mailto:andrew@coolaboratory.com">andrew@coolaboratory.com</a></noscript></p>
-      <p class="mono-line">For full-time roles, visit <a href="https://milmoe.com">Milmoe.com</a></p>
+      <p class="mono-line"><a href="#" class="email-link js-only"></a><noscript><a href="mailto:andrew@coolaboratory.com">Andrew@Coolaboratory.com</a></noscript></p>
+      <p class="mono-line">Visit <a href="https://milmoe.com">Milmoe.com</a><br>for full-time roles</p>
     </div>
   </aside>
 
@@ -74,10 +74,13 @@
   }
 
   var email = decode(DISPLAY_CODES);
+  var display = email.replace(/(^|@)([a-z])/g, function (m, boundary, letter) {
+    return boundary + letter.toUpperCase();
+  });
   var links = document.querySelectorAll('.email-link');
 
   for (var i = 0; i < links.length; i++) {
-    links[i].textContent = email;
+    links[i].textContent = display;
     links[i].href = 'mailto:' + email;
     links[i].classList.remove('js-only');
   }

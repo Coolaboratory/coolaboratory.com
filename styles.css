@@ -9,7 +9,11 @@
 
 :root {
   --bg-header: #FFFFFF;   /* masthead band only, exact logo-background match, never themed */
-  --bg: #F6F1E7;
+  --bg: #F6E8E7;          /* Column 2/3 background (body's own color — Column 1 and the masthead
+                              paint over it with their own tints). Same sat/val as the original
+                              warm cream (sat ~6%, val ~96.5%), hue re-matched to 5°, sampled from
+                              the "atory" letters at the end of the logo wordmark (core rgb
+                              170,52,41). */
   --bg-column1: #F6F6F9;  /* Column 1's background at every breakpoint — pixel-sampled from the
                               logo's own "Coo" letters (avg #585A82, hue 237°), then lightened
                               and desaturated down to a pale tint (hue 238°, sat ~18%, L ~97%).
@@ -32,7 +36,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #17111F;
+    --bg: #1F1211;  /* same hue re-match as the light --bg, applied to the dark base (sat ~45%,
+                        val ~12% preserved, hue to the "atory" 5°) */
     --bg-column1: #161727; /* same "closer to the logo ink, lighter and more blue" logic from
                                an already-cool dark base: hue 239°, sat ~27%, L ~12% — kept in
                                the same hue family as the light-mode tint's 238° */
@@ -164,8 +169,12 @@ img {
 .identity {
   grid-column: 2 / 4;
   grid-row: 1;
-  max-width: 680px;
-  margin: 96px 0 0;
+  max-width: 740px;
+  margin: 90px 0 0; /* 6px less than Column 1's 96px rhythm token — Bitter's and JetBrains
+                        Mono's differing font metrics meant equal margin-top still left the
+                        two columns' first-line baselines 6px apart (measured via pixel-row
+                        ink profiling, not eyeballed). This closes that gap; Column 1's own
+                        96px/276px sticky-lock math is untouched and stays the reference. */
 }
 
 /* Column 2 and Column 3: row 2, side by side, headings align horizontally */
@@ -230,6 +239,7 @@ img {
                    instead of landscape. Fixed once already, keep it fixed. */
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  filter: saturate(50%);
 }
 
 .caption {
