@@ -8,24 +8,35 @@
    patch on the prior six-section single-column version. */
 
 :root {
+  /* Dark is now the unconditional default (site-owner request): any visitor who
+     hasn't explicitly told their OS/browser they prefer light gets this palette.
+     These are the former `@media (prefers-color-scheme: dark)` override values,
+     promoted to :root. The former light defaults now live in the
+     `@media (prefers-color-scheme: light)` block below, restoring the palette
+     only for visitors whose OS explicitly prefers light. */
   --bg-header: #FFFFFF;   /* masthead band only, exact logo-background match, never themed */
-  --bg: #F6E8E7;          /* Column 2/3 background (body's own color — Column 1 and the masthead
-                              paint over it with their own tints). Same sat/val as the original
-                              warm cream (sat ~6%, val ~96.5%), hue re-matched to 5°, sampled from
-                              the "atory" letters at the end of the logo wordmark (core rgb
-                              170,52,41). */
-  --bg-column1: #F6F6F9;  /* Column 1's background at every breakpoint — pixel-sampled from the
-                              logo's own "Coo" letters (avg #585A82, hue 237°), then lightened
-                              and desaturated down to a pale tint (hue 238°, sat ~18%, L ~97%).
-                              Colder and slightly more saturated than --bg's warm cream on
-                              purpose — a quiet nod to the indigo end of the logo's gradient.
-                              Replaces the vertical rule. */
-  --ink: #241A30;
-  --accent: #BF6B69;        /* milmoe.com's exact accent, unmodified — Column 2/3 headings (large text, 3:1 threshold) */
-  --accent-link: #9C4E4C;   /* darkened from --accent for AA at body-text size (5.2:1 on --bg) — link default */
-  --accent-link-hover: #844240; /* darkened further — link hover/active/focus */
-  --green: #1F3A1E;       /* reserved, sampled from the logo tagline, currently unused on this page */
-  --hairline: rgba(36, 26, 48, 0.12);
+  --bg: #1F1211;          /* Column 2/3 background (body's own color — Column 1 and the masthead
+                              paint over it with their own tints). Same hue re-match as the light
+                              --bg (sat ~45%, val ~12% preserved, hue to the "atory" 5°). */
+  --bg-column1: #161727;  /* Column 1's background at every breakpoint — "closer to the logo ink,
+                              lighter and more blue" logic applied from an already-cool dark base:
+                              hue 239°, sat ~27%, L ~12% — kept in the same hue family as the
+                              light-mode tint's 238°. Replaces the vertical rule. */
+  --ink: #F1E9D8;
+  /* Single unmodified accent covers both headings and links in dark mode —
+     4.9:1 on --bg clears even the stricter 4.5:1 body-text threshold, so no
+     separate darkened link variant is needed the way light mode requires one.
+     Hover state differentiated by underline-offset only (see the a:hover rule
+     below), not a second color — no darker/lighter variant was specified for
+     dark mode and BF6B69 already reads clearly against this background. */
+  --accent: #BF6B69;
+  --accent-link: #BF6B69;
+  --accent-link-hover: #BF6B69;
+  --green: #6FA96C;
+  --hairline: rgba(241, 233, 216, 0.12);
+  /* --bg-header intentionally not overridden anywhere: the logo PNG is flat
+     white with no alpha channel, so the masthead band stays white in every
+     color scheme. */
 
   --container-max: 1160px;
   --gutter: 24px;
@@ -34,28 +45,22 @@
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #1F1211;  /* same hue re-match as the light --bg, applied to the dark base (sat ~45%,
-                        val ~12% preserved, hue to the "atory" 5°) */
-    --bg-column1: #161727; /* same "closer to the logo ink, lighter and more blue" logic from
-                               an already-cool dark base: hue 239°, sat ~27%, L ~12% — kept in
-                               the same hue family as the light-mode tint's 238° */
-    --ink: #F1E9D8;
-    /* Single unmodified accent covers both headings and links in dark mode —
-       4.9:1 on --bg-dark clears even the stricter 4.5:1 body-text threshold,
-       so no separate darkened link variant is needed the way light mode
-       requires one. Hover state differentiated by underline-offset only
-       (see the a:hover rule below), not a second color — no darker/lighter
-       variant was specified for dark mode and BF6B69 already reads clearly
-       against this background. */
-    --accent: #BF6B69;
-    --accent-link: #BF6B69;
-    --accent-link-hover: #BF6B69;
-    --green: #6FA96C;
-    --hairline: rgba(241, 233, 216, 0.12);
-    /* --bg-header intentionally not overridden: the logo PNG is flat white with
-       no alpha channel, so the masthead band stays white in every color scheme. */
+    --bg: #F6E8E7;          /* Same sat/val as the original warm cream (sat ~6%, val ~96.5%), hue
+                                re-matched to 5°, sampled from the "atory" letters at the end of
+                                the logo wordmark (core rgb 170,52,41). */
+    --bg-column1: #E7E7F6;  /* Pixel-sampled from the logo's own "Coo" letters (avg #585A82, hue
+                                237°), then lightened and desaturated down to a pale tint.
+                                Brightness/saturation matched to --bg's col 2/3 value (hue 240°,
+                                sat ~45.5%, L ~93.5%) so the two read as equally rich, keeping
+                                col1's own blue/lavender hue distinct from --bg's warm cream. */
+    --ink: #241A30;
+    --accent: #BF6B69;        /* milmoe.com's exact accent, unmodified — Column 2/3 headings (large text, 3:1 threshold) */
+    --accent-link: #9C4E4C;   /* darkened from --accent for AA at body-text size (5.2:1 on --bg) — link default */
+    --accent-link-hover: #844240; /* darkened further — link hover/active/focus */
+    --green: #1F3A1E;       /* reserved, sampled from the logo tagline, currently unused on this page */
+    --hairline: rgba(36, 26, 48, 0.12);
   }
 }
 
@@ -119,10 +124,11 @@ img {
 .masthead-inner {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 57px var(--gutter); /* 57 + 57 + ~66px logo height = 180px total masthead height,
+  padding: 39px var(--gutter); /* was 57px: 39 + 39 + ~66px logo height = 144px total masthead
+                                   height (180px × 0.8, reduced 20% per Andrew's request),
                                    load-bearing: Column 1's sticky `top` below is derived from
-                                   this value (180px masthead + 96px content-rhythm margin =
-                                   276px) — see .col1-sticky's comment for the full chain. */
+                                   this value (144px masthead + 56px content-rhythm margin =
+                                   200px) — see .col1-sticky's comment for the full chain. */
 }
 
 .logo {
@@ -170,11 +176,13 @@ img {
   grid-column: 2 / 4;
   grid-row: 1;
   max-width: 740px;
-  margin: 90px 0 0; /* 6px less than Column 1's 96px rhythm token — Bitter's and JetBrains
-                        Mono's differing font metrics meant equal margin-top still left the
-                        two columns' first-line baselines 6px apart (measured via pixel-row
-                        ink profiling, not eyeballed). This closes that gap; Column 1's own
-                        96px/276px sticky-lock math is untouched and stays the reference. */
+  margin: 50px 0 0; /* was 90px, raised 40px per Andrew's request. Still 6px less than Column
+                        1's rhythm token (56px, see .col1-sticky below) — Bitter's and
+                        JetBrains Mono's differing font metrics meant equal margin-top still
+                        left the two columns' first-line baselines 6px apart (measured via
+                        pixel-row ink profiling, not eyeballed). This closes that gap; the
+                        6px relationship is preserved so baseline alignment holds after the
+                        shift. */
 }
 
 /* Column 2 and Column 3: row 2, side by side, headings align horizontally */
@@ -302,37 +310,36 @@ img {
   z-index: 1; /* sits above .col1-rail::before's tint layer (z-index: 0) — both are children
                  within .col1-rail's own stacking context, so this is purely local, it doesn't
                  touch the page-level header(20)/Column-1(10) stacking order at all */
-  top: 276px; /* 180px masthead height (.masthead-inner) + 96px content-rhythm
-                 margin (margin-top below) = 276px. Three numbers now coupled,
-                 not two — if either the masthead height or the margin below
-                 changes, this must be recomputed as their sum, or the fix
-                 this comment describes silently breaks.
+  top: 200px; /* was 236px: 144px masthead height (.masthead-inner, was 180px — reduced 20%
+                 per Andrew's request) + 56px content-rhythm margin (margin-top below) =
+                 200px. Three numbers still coupled, not two — if either the masthead height
+                 or the margin below changes, this must be recomputed as their sum, or the
+                 fix this comment describes silently breaks.
 
-                 Why 276, not 180: the sticky `top` is the lock threshold —
+                 Why 200, not 144: the sticky `top` is the lock threshold —
                  the viewport-relative distance at which the element stops
                  scrolling with the page. At scroll position 0, .col1-sticky's
-                 content (thanks to its own 96px margin-top just below) is
-                 already rendering 276px from the top of its containing box,
+                 content (thanks to its own 56px margin-top just below) is
+                 already rendering 200px from the top of its containing box,
                  which itself sits flush under the masthead — i.e. it's
                  already sitting exactly at its lock point before any
-                 scrolling happens. Setting `top` to that same 276px means
+                 scrolling happens. Setting `top` to that same 200px means
                  there's no gap left to close, so it locks immediately at
                  1px of scroll instead of visibly translating upward to
-                 close a 96px gap (the bug the previous round's `top: 180px`
+                 close a 56px gap (the bug the previous round's `top: 180px`
                  / `margin-top: 0` combination produced elsewhere: fixing the
                  travel by zeroing the margin also knocked Column 1 out of
-                 alignment with .identity's text, which kept its own 96px
-                 margin-top). Locking the threshold to the content's natural
+                 alignment with .identity's text, which kept its own margin-
+                 top). Locking the threshold to the content's natural
                  resting position, instead of removing the margin that
                  caused the gap, keeps both the alignment and the zero-travel
                  behavior at once. */
-  margin-top: 96px; /* Restored to match .identity's own top rhythm — see the
-                        `top` comment above for why this and the masthead
-                        height together determine the sticky lock point, and
-                        why restoring this (rather than the previous round's
-                        margin-top: 0) is what keeps Column 1 visually
-                        aligned with .identity while still eliminating
-                        catch-up scroll travel. */
+  margin-top: 56px; /* was 96px, raised 40px per Andrew's request — matches .identity's own
+                        top rhythm (50px, offset by the same 6px gap as before) — see the
+                        `top` comment above for why this and the masthead height together
+                        determine the sticky lock point, and why restoring this (rather than
+                        zeroing it) is what keeps Column 1 visually aligned with .identity
+                        while still eliminating catch-up scroll travel. */
   text-align: right; /* Kept on its own merits after the vertical rule it was
                          originally justified against was retired: short
                          marginalia text facing INTO the main columns rather
