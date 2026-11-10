@@ -256,7 +256,7 @@ img {
   width: 100%;
   height: auto; /* keep, same reason as the .photo-item img note below */
   aspect-ratio: 2 / 1;
-  filter: grayscale(1); /* grayscale variant for comparison; PNGs untouched */
+  filter: grayscale(1); /* grayscale is Andrew's final choice; applied in CSS so the PNGs keep their color */
 }
 
 /* No widows: pretty wrapping for running text, balanced wrapping for headings.

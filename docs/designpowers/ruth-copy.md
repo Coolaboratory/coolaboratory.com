@@ -105,7 +105,7 @@ Kept: industrial IoT, frontline workers, high-stakes physical environments, comp
 > Make:SF
 
 **Body:**
-> A Bay Area maker community, founded by Andrew in November 2007. Over the next decade it grew to 3,000 active members and produced more than 200 workshops. All of it was hands-on, at the workbench and at Maker Faire, teaching and building alongside people who cared more about figuring it out than showing off. He moved on in May 2018.
+> A Bay Area maker community, founded by Andrew in November 2007. Over the next decade it grew to 3,000 active members and produced more than 200 workshops. Participants had the opportunity to build their skills, exchange ideas, collaborate on future projects, and show off the results. He moved on in May 2018.
 
 **Then:** the three photos, unchanged, per Grant's §3A spec and Andrew's confirmed captions and alt text. Not redoing that work here, just noting placement: photos sit below this paragraph, in Column 3, not in a full-width grid.
 
@@ -129,6 +129,7 @@ Kept: industrial IoT, frontline workers, high-stakes physical environments, comp
 
 - **Round twelve:** Ruth's no-colon rewrites, approved by Andrew, replace the colon constructions in the identity paragraph, both Column 2 paragraphs and the Make:SF paragraph. The only colons left in page copy are the "Coolaboratory: Makers of Fine Experience" tagline and the "Make:SF" name. Andrew's name is always "Andrew G Milmoe": middle initial included, no period after the G
 - **Round thirteen:** Ruth's he/him rewrite, approved by Andrew. The identity line (and meta description) now names him first and continues in the third person ("Coolaboratory is the independent practice of Andrew G Milmoe. He works in..."), and both Column 2 paragraphs make him the subject ("He started Coolaboratory...", "carried him to Chicago", "He designs...", "He turns...") instead of Coolaboratory or "the work". Column 3 is unchanged
+- **Round fourteen:** in the Make:SF paragraph, the hands-on sentence is replaced with Andrew's own sentence (typo fixed): "Participants had the opportunity to build their skills, exchange ideas, collaborate on future projects, and show off the results." The rest of the paragraph is unchanged
 
 ## Reading level
 
