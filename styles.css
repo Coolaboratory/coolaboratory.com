@@ -259,6 +259,26 @@ img {
   filter: grayscale(1); /* grayscale variant for comparison; PNGs untouched */
 }
 
+/* No widows: pretty wrapping for running text, balanced wrapping for headings.
+   The &nbsp; between the last two words of each paragraph, heading and
+   caption in index.html is the fallback for browsers without text-wrap
+   support (Firefox). Same approach as jamesomilmoe.com. Selectors are scoped
+   so the h3 (which also carries .mono-line) gets balance, not pretty. */
+
+.identity,
+.col2 p,
+.col3 p,
+.caption,
+.col1-sticky .mono-line {
+  text-wrap: pretty;
+}
+
+.col2 h2,
+.col3 h2,
+.client-logos-heading {
+  text-wrap: balance;
+}
+
 /* Column 3 photo rail: stacked, not gridded, sits below the paragraph.
    Unchanged from the prior round: same files, crops, captions, alt text. */
 
