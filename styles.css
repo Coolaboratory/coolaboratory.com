@@ -256,6 +256,7 @@ img {
   width: 100%;
   height: auto; /* keep, same reason as the .photo-item img note below */
   aspect-ratio: 2 / 1;
+  filter: grayscale(1); /* grayscale variant for comparison; PNGs untouched */
 }
 
 /* Column 3 photo rail: stacked, not gridded, sits below the paragraph.
