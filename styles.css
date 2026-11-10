@@ -34,6 +34,7 @@
   --accent-link-hover: #BF6B69;
   --green: #6FA96C;
   --hairline: rgba(241, 233, 216, 0.12);
+  --logo-frame: #453935;  /* client logo grid gaps/padding: --ink at 18% over dark --bg */
   /* --bg-header intentionally not overridden anywhere: the logo PNG is flat
      white with no alpha channel, so the masthead band stays white in every
      color scheme. */
@@ -61,6 +62,7 @@
     --accent-link-hover: #844240; /* darkened further — link hover/active/focus */
     --green: #1F3A1E;       /* reserved, sampled from the logo tagline, currently unused on this page */
     --hairline: rgba(36, 26, 48, 0.12);
+    --logo-frame: #D0C3C6;  /* --ink at 18% over light --bg */
   }
 }
 
@@ -222,6 +224,38 @@ img {
 .col2 p:last-of-type,
 .col3 p:last-of-type {
   margin-bottom: 0;
+}
+
+/* Column 2 client logo grid: 2 x 5, alphabetical, nine logos. The tenth
+   cell is left empty on purpose (no 10th li); the container's --logo-frame
+   background shows through it, the same flat color as the 4px gaps, so it
+   reads as the frame continuing. Each PNG is a 480x240 tile already padded
+   with the logo's own background. Spec: docs/client-logo-grid-spec.md */
+
+.client-logos-heading {
+  margin: 32px 0 8px;
+}
+
+.client-logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  margin: 0;
+  list-style: none;
+  background: var(--logo-frame);
+  max-width: 444px; /* desktop col2 width; stops tiles ballooning on tablets */
+}
+
+.client-logos li {
+  margin: 0;
+}
+
+.client-logos img {
+  display: block;
+  width: 100%;
+  height: auto; /* keep, same reason as the .photo-item img note below */
+  aspect-ratio: 2 / 1;
 }
 
 /* Column 3 photo rail: stacked, not gridded, sits below the paragraph.
