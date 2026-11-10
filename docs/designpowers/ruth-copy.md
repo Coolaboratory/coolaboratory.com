@@ -73,7 +73,7 @@ Three short lines, unchanged in voice from round five, trimmed this round per th
 ### Top of body: identity (spans columns 2+3)
 
 **Body:**
-> Coolaboratory is Andrew G Milmoe's independent practice in user experience design, physical AI, and frontier AI model training. It also supports the maker community.
+> Coolaboratory is the independent practice of Andrew G Milmoe. He works in user experience design, physical AI, and frontier AI model training, and he supports the maker community.
 
 **Framework note:** trimmed this round, cut "One person. Doing the work directly, not managing a team that does it for him." entirely per Andrew's direct note that Coolaboratory is supposed to read as collaborative, not solo. Everything else about this sentence (Rule of One, the "So What?" test on the services list, full name used exactly once here) is unchanged from round four, see the appendix.
 
@@ -85,9 +85,9 @@ Three short lines, unchanged in voice from round five, trimmed this round per th
 > UX design for complex ecosystems, from the field to the boardroom
 
 **Body:**
-> Coolaboratory started in the Oakland Bay Area, doing information architecture and user experience design for global brands by way of local digital agencies.
+> He started Coolaboratory in the Oakland Bay Area, doing information architecture and user experience design for global brands by way of local digital agencies.
 
-> That same discipline carried it to Chicago, into user experience design and physical AI for hardware startups. The work is industrial IoT for high-stakes physical environments, built for the people running the machines as much as the ones reading the numbers in the boardroom. It turns heavy operational data into something a frontline worker can actually use.
+> That same discipline carried him to Chicago, into user experience design and physical AI for hardware startups. He designs industrial IoT for high-stakes physical environments, built for the people running the machines as much as the ones reading the numbers in the boardroom. He turns heavy operational data into something a frontline worker can actually use.
 
 **Framework note:** Before/After/Bridge, same structure as before, but the bridge line now has to work without Make:SF in the room. "That same discipline" points back to "information architecture and user experience design" in the sentence before it, a real textual antecedent, not a vague gesture, so the transition still earns itself without needing Make:SF's maker-instinct framing to carry it. Make:SF isn't mentioned in this column at all, on purpose, per Andrew's instruction that this column is the professional through-line only.
 
@@ -128,6 +128,7 @@ Kept: industrial IoT, frontline workers, high-stakes physical environments, comp
 - **Round eleven:** "industrial IoT" (lowercase "industrial," capitalized "IoT," matches the existing lowercase pattern for "physical AI") and "frontline worker" (one word, "frontline," not "front-line" or "front line") both now appear in Column 2's closing sentence. "The field" and "the boardroom" in the body sentence deliberately echo the heading's own wording, that's intentional reinforcement, not accidental repetition, don't edit one without checking the other
 
 - **Round twelve:** Ruth's no-colon rewrites, approved by Andrew, replace the colon constructions in the identity paragraph, both Column 2 paragraphs and the Make:SF paragraph. The only colons left in page copy are the "Coolaboratory: Makers of Fine Experience" tagline and the "Make:SF" name. Andrew's name is always "Andrew G Milmoe": middle initial included, no period after the G
+- **Round thirteen:** Ruth's he/him rewrite, approved by Andrew. The identity line (and meta description) now names him first and continues in the third person ("Coolaboratory is the independent practice of Andrew G Milmoe. He works in..."), and both Column 2 paragraphs make him the subject ("He started Coolaboratory...", "carried him to Chicago", "He designs...", "He turns...") instead of Coolaboratory or "the work". Column 3 is unchanged
 
 ## Reading level
 
