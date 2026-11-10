@@ -199,11 +199,11 @@ All three lines: JetBrains Mono, per §1. **The gap between the three lines is n
 
 One sentence, per Ruth's round-six cut:
 
-> Coolaboratory is Andrew G. Milmoe's independent practice: user experience design, physical AI, frontier AI model training, and support for the maker community.
+> Coolaboratory is Andrew G Milmoe's independent practice: user experience design, physical AI, frontier AI model training, and support for the maker community.
 
 Sits in Row 1, spanning the full width of Columns 2+3 combined (~890–940px depending on viewport). **Don't let the text itself stretch that wide** — cap the paragraph's own max-width at ~680px (the same comfortable prose measure used throughout the rest of this system), left-aligned within the spanning band so it starts flush with Column 2's left edge. The grid area is wide; the text measure isn't. A single sentence stretched across a 900px line would be a bad reading experience regardless of how much room the layout offers it.
 
-No heading, no kicker, same size as narrative body copy (18px Bitter 400) — the sentence's own first four words ("Coolaboratory is Andrew G. Milmoe's...") do the identifying work, consistent with the no-kicker system established earlier and still in force.
+No heading, no kicker, same size as narrative body copy (18px Bitter 400) — the sentence's own first four words ("Coolaboratory is Andrew G Milmoe's...") do the identifying work, consistent with the no-kicker system established earlier and still in force.
 
 ---
 

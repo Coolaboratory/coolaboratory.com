@@ -73,7 +73,7 @@ Three short lines, unchanged in voice from round five, trimmed this round per th
 ### Top of body: identity (spans columns 2+3)
 
 **Body:**
-> Coolaboratory is Andrew G. Milmoe's independent practice: user experience design, physical AI, frontier AI model training, and support for the maker community.
+> Coolaboratory is Andrew G Milmoe's independent practice in user experience design, physical AI, and frontier AI model training. It also supports the maker community.
 
 **Framework note:** trimmed this round, cut "One person. Doing the work directly, not managing a team that does it for him." entirely per Andrew's direct note that Coolaboratory is supposed to read as collaborative, not solo. Everything else about this sentence (Rule of One, the "So What?" test on the services list, full name used exactly once here) is unchanged from round four, see the appendix.
 
@@ -85,9 +85,9 @@ Three short lines, unchanged in voice from round five, trimmed this round per th
 > UX design for complex ecosystems, from the field to the boardroom
 
 **Body:**
-> Coolaboratory started in the Oakland Bay Area: information architecture and user experience design for global brands, by way of local digital agencies.
+> Coolaboratory started in the Oakland Bay Area, doing information architecture and user experience design for global brands by way of local digital agencies.
 
-> That same discipline carried it to Chicago: user experience design and physical AI for hardware startups. Industrial IoT for high-stakes physical environments, built for the people running the machines as much as the ones reading the numbers in the boardroom: heavy operational data made into something a frontline worker can actually use.
+> That same discipline carried it to Chicago, into user experience design and physical AI for hardware startups. The work is industrial IoT for high-stakes physical environments, built for the people running the machines as much as the ones reading the numbers in the boardroom. It turns heavy operational data into something a frontline worker can actually use.
 
 **Framework note:** Before/After/Bridge, same structure as before, but the bridge line now has to work without Make:SF in the room. "That same discipline" points back to "information architecture and user experience design" in the sentence before it, a real textual antecedent, not a vague gesture, so the transition still earns itself without needing Make:SF's maker-instinct framing to carry it. Make:SF isn't mentioned in this column at all, on purpose, per Andrew's instruction that this column is the professional through-line only.
 
@@ -105,7 +105,7 @@ Kept: industrial IoT, frontline workers, high-stakes physical environments, comp
 > Make:SF
 
 **Body:**
-> A Bay Area maker community, founded by Andrew in November 2007. Over the next decade it grew to 3,000 active members and produced more than 200 workshops, all of it hands-on: at the workbench, at Maker Faire, teaching and building alongside people who cared more about figuring it out than showing off. He moved on in May 2018.
+> A Bay Area maker community, founded by Andrew in November 2007. Over the next decade it grew to 3,000 active members and produced more than 200 workshops. All of it was hands-on, at the workbench and at Maker Faire, teaching and building alongside people who cared more about figuring it out than showing off. He moved on in May 2018.
 
 **Then:** the three photos, unchanged, per Grant's §3A spec and Andrew's confirmed captions and alt text. Not redoing that work here, just noting placement: photos sit below this paragraph, in Column 3, not in a full-width grid.
 
@@ -126,6 +126,8 @@ Kept: industrial IoT, frontline workers, high-stakes physical environments, comp
 - **Exception, round eight:** the Column 1 CTA line reads "Milmoe.com" (capital M), specified directly by Andrew, an intentional exception to the page's lowercase "milmoe.com" used everywhere else. Don't normalize this to match the rest of the page without checking with Andrew first
 - **Round nine:** all three Column 1 lines are now period-free ("Email for availability," "andrew@coolaboratory.com," "For full-time roles, visit Milmoe.com"), no trailing punctuation on any of them
 - **Round eleven:** "industrial IoT" (lowercase "industrial," capitalized "IoT," matches the existing lowercase pattern for "physical AI") and "frontline worker" (one word, "frontline," not "front-line" or "front line") both now appear in Column 2's closing sentence. "The field" and "the boardroom" in the body sentence deliberately echo the heading's own wording, that's intentional reinforcement, not accidental repetition, don't edit one without checking the other
+
+- **Round twelve:** Ruth's no-colon rewrites, approved by Andrew, replace the colon constructions in the identity paragraph, both Column 2 paragraphs and the Make:SF paragraph. The only colons left in page copy are the "Coolaboratory: Makers of Fine Experience" tagline and the "Make:SF" name. Andrew's name is always "Andrew G Milmoe": middle initial included, no period after the G
 
 ## Reading level
 
