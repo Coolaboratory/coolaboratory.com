@@ -224,7 +224,7 @@ img {
   margin-bottom: 0;
 }
 
-/* Column 2 client logo grid: 2 x 5, alphabetical, nine logos. The tenth
+/* Column 2 client logo grid: 2 x 5, nine logos in an order set by Andrew. The tenth
    cell is left empty on purpose (no 10th li). The grid has no background or
    outer padding (site-owner request, replacing the spec's --logo-frame), so
    the page shows through the 4px gaps, the empty cell simply isn't there,
